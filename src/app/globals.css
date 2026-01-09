@@ -20,13 +20,13 @@
 }
 
 html {
+  overflow-y: auto;
   overflow-x: hidden;
-  overflow-y: hidden;
 }
 
 body {
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 /* Global utility classes */
