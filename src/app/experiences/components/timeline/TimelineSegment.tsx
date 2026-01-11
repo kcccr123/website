@@ -6,9 +6,15 @@ interface TimelineSegmentProps {
   row: ItemRow;
   dotOffset: number;
   dotSize: number;
+  onDetailsHeight?: (id: string, height: number) => void;
 }
 
-export default function TimelineSegment({ row, dotOffset, dotSize }: TimelineSegmentProps) {
+export default function TimelineSegment({
+  row,
+  dotOffset,
+  dotSize,
+  onDetailsHeight
+}: TimelineSegmentProps) {
   const isLeft = row.isLeft;
   const period = row.item.end
     ? `${row.item.start} - ${row.item.end}`
@@ -23,6 +29,7 @@ export default function TimelineSegment({ row, dotOffset, dotSize }: TimelineSeg
       period={period}
       logoUrl={logoUrl}
       align={isLeft ? "right" : "left"}
+      onDetailsHeight={onDetailsHeight}
     />
   );
 

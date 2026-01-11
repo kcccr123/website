@@ -11,25 +11,20 @@ import SlideIn from "./components/SlideIn";
 import ExpandArrow from "./components/ExpandArrow";
 import AboutMeMarkdown from "./components/AboutMeMarkdown";
 
-export default function Home() {
+export default function Home() {  
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const aboutBlurb =
-    "I build clean, high-impact web experiences that balance polish with performance. I care about clarity, strong interaction design, and building systems that scale with the project. When I'm not shipping, I'm exploring new tooling, refining my craft, and iterating on the details that make products feel great to use.";
+    "Hi, I’m Kevin. I focus on backend engineering, but I enjoy working across the stack. I’ve explored everything from web and frontend to ML, game dev, and distributed systems out of curiosity, all in the process of becoming a more adaptable engineer.";
   const moreAboutContent = `
-I'm Kevin Chen, a developer who likes building clean, expressive interfaces and dependable systems.
-I focus on thoughtful design, strong fundamentals, and shipping polished experiences.
+I'm Kevin
 
-- Full-stack and UI engineering
-- Curious about systems and developer tooling
-- Always iterating and learning
+- WIP
 `;
 
   return (
     <PageTransition>
       <div className="min-h-screen font-sans pt-64 pb-12 page-gutters">
-        {/* Centered container that maintains shape */}
         <div className="page-container flex flex-col gap-10">
-          {/* Top row */}
           <div>
             <SlideIn
               direction="top"
@@ -52,10 +47,9 @@ I focus on thoughtful design, strong fundamentals, and shipping polished experie
             </SlideIn>
           </div>
 
-          {/* About blurb */}
           <div>
             <SlideIn
-              direction="top"
+              direction="left"
               delay={0.2}
               duration={0.6}
               maxHeight="100%"
@@ -65,7 +59,7 @@ I focus on thoughtful design, strong fundamentals, and shipping polished experie
             >
               <TypedText
                 text={aboutBlurb}
-                typingSpeed={35}
+                typingSpeed={30}
                 className="w-full"
                 textClassName="text-[clamp(1.05rem,2.1vw,1.6rem)] text-[var(--color-text-secondary)] leading-relaxed max-w-[70rem] whitespace-normal"
                 cursorClassName=""
@@ -75,10 +69,8 @@ I focus on thoughtful design, strong fundamentals, and shipping polished experie
             </SlideIn>
           </div>
 
-          {/* Bottom row */}
           <div>
             <div className="grid w-full grid-cols-1 md:grid-cols-[minmax(320px,440px)_minmax(0,1fr)] lg:grid-cols-[minmax(320px,440px)_minmax(0,1.2fr)_minmax(260px,360px)] gap-8 items-start">
-              {/* Left: Social Links - narrow column */}
               <SlideIn
                 direction="left"
                 delay={0.3}
@@ -100,7 +92,6 @@ I focus on thoughtful design, strong fundamentals, and shipping polished experie
                 />
               </SlideIn>
 
-              {/* Right: GitHub Contributions - wider column */}
               <SlideIn
                 direction="right"
                 delay={0.5}

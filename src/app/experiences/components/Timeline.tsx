@@ -1,5 +1,6 @@
 "use client";
 
+import { useCallback, useState } from "react";
 import { ExperienceItem } from "../data/experiences";
 import TimelineCard from "./timeline/TimelineCard";
 import TimelineSegment from "./timeline/TimelineSegment";
@@ -58,6 +59,20 @@ const monthDiff = (start: Date, end: Date) => {
 };
 
 export default function Timeline({ items, className = "" }: TimelineProps) {
+  const [detailsHeights, setDetailsHeights] = useState<Record<string, number>>({});
+  const handleDetailsHeight = useCallback((id: string, height: number) => {
+    setDetailsHeights((prev) => {
+      const nextHeight = Math.ceil(height);
+      const currentHeight = prev[id] ?? 0;
+      if (currentHeight >= nextHeight) {
+        return prev;
+      }
+      return { ...prev, [id]: nextHeight };
+    });
+  }, []);
+
+  const maxDetailsHeight = Math.max(0, ...Object.values(detailsHeights));
+  const extraBottomPadding = maxDetailsHeight ? maxDetailsHeight + 16 : 0;
   const now = new Date();
   const prepared = items
     .map((item) => {
@@ -269,7 +284,13 @@ export default function Timeline({ items, className = "" }: TimelineProps) {
       <div className="relative md:hidden" style={{ height: `${cursorTop}px` }}>
         <div className="absolute left-4 top-0 h-full w-px bg-[var(--color-glass-border)]" />
         {rows.map((row) => (
-          <TimelineSegment key={row.item.id} row={row} dotOffset={dotOffset} dotSize={dotSize} />
+          <TimelineSegment
+            key={row.item.id}
+            row={row}
+            dotOffset={dotOffset}
+            dotSize={dotSize}
+            onDetailsHeight={handleDetailsHeight}
+          />
         ))}
       </div>
 
@@ -307,6 +328,7 @@ export default function Timeline({ items, className = "" }: TimelineProps) {
                       logoUrl={logoUrl}
                       align="right"
                       compact={compact}
+                      onDetailsHeight={handleDetailsHeight}
                     />
                   </div>
                 </div>
@@ -395,6 +417,7 @@ export default function Timeline({ items, className = "" }: TimelineProps) {
                       logoUrl={logoUrl}
                       align="left"
                       compact={compact}
+                      onDetailsHeight={handleDetailsHeight}
                     />
                   </div>
                 </div>
@@ -403,6 +426,10 @@ export default function Timeline({ items, className = "" }: TimelineProps) {
           </div>
         </div>
       </div>
+
+      {extraBottomPadding > 0 && (
+        <div aria-hidden="true" style={{ height: `${extraBottomPadding}px` }} />
+      )}
     </div>
   );
 }

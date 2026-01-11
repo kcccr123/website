@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { ExperienceItem } from "../../data/experiences";
 
 interface TimelineCardProps {
@@ -6,6 +7,7 @@ interface TimelineCardProps {
   logoUrl?: string;
   align?: "left" | "right";
   compact?: boolean;
+  onDetailsHeight?: (id: string, height: number) => void;
 }
 
 export default function TimelineCard({
@@ -13,7 +15,8 @@ export default function TimelineCard({
   period,
   logoUrl,
   align = "left",
-  compact = false
+  compact = false,
+  onDetailsHeight
 }: TimelineCardProps) {
   const alignRight = align === "right";
   const maxWidthClass = compact ? "max-w-[360px]" : "max-w-[520px]";
@@ -29,6 +32,35 @@ export default function TimelineCard({
     .slice(0, 2)
     .join("")
     .toUpperCase();
+  const detailsRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!onDetailsHeight || !detailsRef.current) {
+      return;
+    }
+
+    const element = detailsRef.current;
+    const reportHeight = () => {
+      const computed = window.getComputedStyle(element);
+      const paddingTop = Number.parseFloat(computed.paddingTop) || 0;
+      const paddingBottom = Number.parseFloat(computed.paddingBottom) || 0;
+      const expandedPadding = paddingTop + paddingBottom > 0 ? 0 : 40;
+      onDetailsHeight(item.id, element.scrollHeight + expandedPadding);
+    };
+
+    reportHeight();
+
+    if (typeof ResizeObserver === "undefined") {
+      return;
+    }
+
+    const observer = new ResizeObserver(() => {
+      reportHeight();
+    });
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [item.id, onDetailsHeight]);
 
   return (
     <div
@@ -61,6 +93,7 @@ export default function TimelineCard({
       </button>
 
       <div
+        ref={detailsRef}
         className={`mt-4 w-full max-h-0 translate-y-2 overflow-hidden rounded-lg border border-[var(--color-glass-border)] bg-[var(--color-glass)] px-6 py-0 opacity-0 transition-all duration-300 group-hover:max-h-[600px] group-hover:py-5 group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:max-h-[600px] group-focus-within:py-5 group-focus-within:opacity-100 group-focus-within:translate-y-0 md:pointer-events-none md:absolute md:top-0 md:mt-0 md:max-h-none md:translate-y-0 md:overflow-visible md:px-6 md:py-5 md:opacity-0 md:shadow-[0_12px_40px_rgba(0,0,0,0.35)] md:transition-all md:duration-300 ${panelWidthClass} ${panelSideClass} ${panelMotionClass} md:group-hover:pointer-events-auto md:group-hover:opacity-100 md:group-hover:translate-x-0 md:group-focus-within:pointer-events-auto md:group-focus-within:opacity-100 md:group-focus-within:translate-x-0`}
       >
         <div className="flex flex-wrap items-center gap-2">

@@ -87,7 +87,7 @@ body {
   display: block;
   width: 100%;
   max-width: 100%;
-  font-size: clamp(6.5rem, 22vw, 26rem);
+  font-size: clamp(6.5rem, 19vw, 22rem);
   line-height: 0.9;
   letter-spacing: -0.02em;
   white-space: nowrap;
