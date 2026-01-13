@@ -30,7 +30,16 @@ export const experiences: ExperienceItem[] = [
       "Developed and deployed Signal Explorer, a gRPC API and web app that catalogs PLC signals so users and services can discover data needed for production queries.",
       "Drove the datastore migration from Flux to ClickHouse, improving query speed and enabling real-time shop-floor analytics."
     ],
-    tags: ["Backend", "Internship"]
+    tags: [
+      "Backend",
+      "Go",
+      "Kafka",
+      "Kubernetes",
+      "gRPC",
+      "ClickHouse",
+      "Grafana",
+      "SQL"
+    ]
   },
   {
     id: "exp-02",
@@ -48,7 +57,7 @@ export const experiences: ExperienceItem[] = [
       "Supporting University of Toronto courses by teaching the Python memory model through hands-on practice.",
       "Working under Prof. Jonathan Calver and Prof. David Liu."
     ],
-    tags: ["Web App", "Education"]
+    tags: ["Web App", "Python", "MemoryViz", "PythonTA", "MarkUs"]
   },
   {
     id: "exp-03",
@@ -66,7 +75,7 @@ export const experiences: ExperienceItem[] = [
       "Automated testing and deployments with Terraform and GitLab CI to reduce manual steps and prevent config drift.",
       "Managed GCP workloads with Kubernetes/Docker/Helm for DPMC apps, ensuring reliable, scalable releases."
     ],
-    tags: ["React", "TypeScript", "GCP"]
+    tags: ["Full Stack", "React", "TypeScript", "Airflow", "Superset", "Terraform", "GCP", "Kubernetes"]
   },
   {
     id: "exp-04",
@@ -82,6 +91,6 @@ export const experiences: ExperienceItem[] = [
       "Built UIs and REST APIs for user document management with React, TypeScript, and Express.",
       "Delivered a framework for multilingual support for consistent UX across regions."
     ],
-    tags: ["Full Stack", "AI", "React"]
+    tags: ["Full Stack", "React", "TypeScript", "Express", "AI"]
   }
 ];

@@ -15,13 +15,13 @@ export default function Home() {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const moreAboutRef = useRef<HTMLDivElement | null>(null);
   const aboutBlurb =
-    "Hi, I’m Kevin. My focus is in backend engineering, but I enjoy working across the stack. I’ve explored everything from web and frontend to ML, game development, and distributed systems out of curiosity, all in the process of becoming a more adaptable engineer.";
+    "Hi, I’m Kevin. My focus is in backend engineering and distributed systems, but I enjoy working across the stack. I’ve explored everything from web and frontend to ML, game development, and cloud out of curiosity, all in the process of becoming a more effective and adaptable engineer.";
 const moreAboutContent = ` 
 I'm a **Computer Science** student currently studying at the **University of Toronto**, pursuing Computer Science and Statistics, and expecting to graduate in December 2026. Originally from **British Columbia**, I became interested in software engineering in high school.
 
 ## Career In Software
 
-I’m currently studying **Computer Science and Statistics** at the **University of Toronto**, and I’m planning to graduate in **December 2026**. I grew up in **British Columbia**, and I first got into software engineering in high school through a mix of curiosity, side projects, and wanting to build things that actually worked.
+I’m currently studying **Computer Science and Statistics** at the **University of Toronto**, and I’m planning to graduate in **December 2026**. I grew up in **British Columbia**, and I first got into software engineering in high school through a mix of curiosity for computers and wanting to build projects.
 
 Right now, I’m most focused on **backend engineering and distributed systems**. I enjoy problems where reliability matters, where performance has real constraints, and where systems need to hold up under real-world load. I’m moving my career in this direction as I look to find my niche in industry.
 

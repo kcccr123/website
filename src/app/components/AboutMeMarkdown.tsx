@@ -93,18 +93,23 @@ export default function AboutMeMarkdown({
               {...props}
             />
           ),
-          code: ({ node, inline, ...props }: any) =>
-            inline ? (
-              <code
-                className="bg-white/10 px-1.5 py-0.5 rounded text-sm font-mono text-blue-300"
-                {...props}
-              />
-            ) : (
-              <code
-                className="block bg-black/40 p-4 rounded-lg overflow-x-auto text-sm font-mono text-text-secondary my-4"
-                {...props}
-              />
-            ),
+          code: ({ node, className, children, ...props }: any) => {
+            const text = String(children ?? "");
+            const hasNewline = /[\r\n]/.test(text);
+            const hasLanguage = /language-/.test(className || "");
+            const isInline = !hasNewline && !hasLanguage;
+            const baseClassName = isInline
+              ? "bg-white/10 px-1.5 py-0.5 rounded text-sm font-mono text-blue-300"
+              : "block bg-black/40 p-4 rounded-lg overflow-x-auto text-sm font-mono text-text-secondary my-4";
+            const combinedClassName = className
+              ? `${baseClassName} ${className}`
+              : baseClassName;
+            return (
+              <code className={combinedClassName} {...props}>
+                {children}
+              </code>
+            );
+          },
           pre: ({ node, ...props }) => (
             <pre className="bg-black/40 rounded-lg overflow-hidden my-4" {...props} />
           ),

@@ -49,10 +49,10 @@ export default function ProjectLinks({ links }: ProjectLinksProps) {
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-text-secondary hover:text-white transition-colors duration-200"
+            className="inline-flex items-center gap-3 text-text-secondary hover:text-white transition-colors duration-200"
           >
-            <Icon className="text-2xl" />
-            <span className="text-sm">{link.label}</span>
+            <Icon className="text-3xl" />
+            <span className="text-base">{link.label}</span>
           </a>
         );
       })}

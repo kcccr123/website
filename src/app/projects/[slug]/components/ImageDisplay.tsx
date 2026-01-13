@@ -9,6 +9,8 @@ interface ImageDisplayProps {
   caption?: string;
   width?: number;
   height?: number;
+  className?: string;
+  imageClassName?: string;
 }
 
 /**
@@ -25,23 +27,27 @@ export default function ImageDisplay({
   alt = "Project image", 
   caption,
   width = 1200,
-  height = 675
+  height = 675,
+  className = "",
+  imageClassName
 }: ImageDisplayProps) {
   if (!src) return null;
+
+  const resolvedImageClassName = imageClassName ?? "object-cover";
   
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="bg-glass backdrop-blur-sm border border-glass-border rounded-lg overflow-hidden"
+      className={`bg-glass backdrop-blur-sm border border-glass-border rounded-lg overflow-hidden ${className}`}
     >
       <div className="relative w-full" style={{ aspectRatio: `${width}/${height}` }}>
         <Image
           src={src}
           alt={alt}
           fill
-          className="object-cover"
+          className={resolvedImageClassName}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
         />
       </div>
